@@ -2,11 +2,11 @@ var pull = require('pull-stream/pull')
 
 //up, down * loopback, network, internet
 
-function Sensor (onRate) {
+function Sensor (onRate, up) {
   if(!onRate)
     return function (read) { return read }
   return pull.through(function (data) {
-    onRate(data.length)
+    onRate(data.length, up)
   })
 }
 
